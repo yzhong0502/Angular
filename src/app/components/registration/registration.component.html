@@ -1,0 +1,38 @@
+<div class="col-md-12 col-sm-10 col-md-8 col-sm-offset-3 col-md-offset-4">
+  <div class="nav-tabs">Registration</div>
+  <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" [mustMatch]="['password','conPassword']" novalidate>
+    <table>
+      <tr>
+        <td class="right">Name</td>
+        <td><input type="text" required pattern="[a-zA-Z ]*" #inputName="ngModel" ngModel></td>
+        <td style="color:red" *ngIf="f.submitted && inputName.errors">Name is required and must be valid.</td>
+      </tr>
+      <tr>
+        <td class="right">E-mail Address</td>
+        <td><input type="email" required email #email="ngModel" ngModel></td>
+        <td style="color:red" *ngIf="f.submitted && email.errors">Email is required and must be valid.</td>
+      </tr>
+      <tr>
+        <td class="right">Password</td>
+        <td><input type="password" required minlength="6" #password="ngModel" ngModel></td>
+        <td>
+          <p style="color:red" *ngIf="f.submitted && password.errors.required">Password is required.</p>
+          <p style="color:red" *ngIf="f.submitted && password.errors.minlength">Password must be at least 6 characters</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="right">Confirm Password</td>
+        <td><input type="password" required="" #conPassword="ngModel" ngModel></td>
+        <td>
+          <p style="color:red" *ngIf="f.submitted && password.errors.required">Confirm password is required.</p>
+          <p style="color:red" *ngIf="conPassword.errors.mustMatch">Password Mismatch</p>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" value="Register"></td>
+        <td></td>
+      </tr>
+    </table>
+  </form>
+</div>

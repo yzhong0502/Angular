@@ -1,0 +1,30 @@
+<div class="col-md-12 col-sm-10 col-md-8 col-sm-offset-3 col-md-offset-4">
+  <div class="nav-tabs">Login</div>
+  <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+    <table>
+      <tr>
+        <td class="right">E-mail Address</td>
+        <td><input type="email" required email #email="ngModel" ngModel/></td>
+        <td><p style="color:red" *ngIf="f.submitted && email.errors">Email is required and must be valid.</p></td>
+      </tr>
+      <tr>
+        <td class="right">Password</td>
+        <td><input type="password" required minlength="6" #password="ngModel" ngModel/></td>
+        <td><p style="color:red" *ngIf="f.submitted && password.errors.required">Password is required.</p></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="checkbox" #rememberMe="ngModel" ngModel/>Remember me.</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" value="Login"/>
+          <a class="btn" [routerLink]="['/forgot']" routerLinkActive="active"
+                                            [routerLinkActiveOptions]="{exact:true}">Forgot your password?</a>
+        </td>
+        <td></td>
+      </tr>
+    </table>
+  </form>
+</div>
